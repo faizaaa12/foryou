@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Night Scene</title>
+        <style>
+            *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+.scene{
+    position:relative;
+    background:linear-gradient(#111425, #3751e0);
+    width:100%;
+    overflow:hidden;
+    background-attachment:fixed;
+    height:100vh;
+}
+.moon{
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    background:#fff;
+    position:absolute;
+    z-index:1000;
+    top:40px;
+    left:80px;
+}
+.moon:after{
+    content:'';
+    position:absolute;
+    top:-15px;
+    left:15px;
+    border-radius:50%;
+    opacity:99%;
+    width:100%;
+    height:100%;
+    background-attachment:fixed;
+    background:linear-gradient(#111425, #111330);
+}
+.forest{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    transform:scale(1.2);
+    z-index:1002;
+}
+.scene i{
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+    z-index:1001;
+    animation:animate linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        opacity:0;
+        transform:translateY(0);
+    }
+    10%,90%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-100px);
+    }
+}
+.animated{
+    position:absolute ;
+    font-size:14px;
+    color:white;
+    top:35%;
+    right:6%;
+    animation:backInDown 4s ease-in-out;
+    
+}
+
+@keyframes backInDown {
+    0% {
+        transform: translateY(-1200px) scale(.7);
+        opacity: .7
+    }
+
+    80% {
+        transform: translateY(0) scale(.7);
+        opacity: .7
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1
+    }
+}
+
+
+        </style>
+    </head>
+    <body>
+        <div class="scene">
+            <div class="moon"></div>
+            <img src="https://dl.dropbox.com/s/mtj3c0cosaov6ax/forest.png?dl=0" class="forest"/>
+        </div>
+        <script>
+            function start(){
+                let count = 500;
+                let i = 0;
+                let scene = document.querySelector('.scene');
+                while(i < count){
+                    let star = document.createElement('i');
+                    let x = Math.floor(Math.random() * window.outerWidth);
+                    let y = Math.floor(Math.random() * window.outerHeight);
+                    let duration = Math.random() * 10;
+                    let size = Math.random() * 2;
+                    star.style.left = x + "px";
+                    star.style.top = y + "px";
+                    star.style.width = 1 + size  + "px";
+                    star.style.height = 1 + size  + "px";
+                    star.style.animationDuration = 40 + duration  + "s";
+                    star.style.animationDelay = duration + "s";
+                    scene.appendChild(star);
+                    i++;
+                }
+            }
+            start();
+        </script>
+        <div class="animated">Sometimes need alone <br>with peace nature.</div>
+    </body>
+</html>
+
+
